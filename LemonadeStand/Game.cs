@@ -8,6 +8,8 @@ namespace LemonadeStand
 {
     class Game
     {
+        Player playerEins = new LemonadeStand.Player();
+        
         public void StartGame()
         {
             StartIntro();
@@ -24,11 +26,7 @@ namespace LemonadeStand
             GenerateClients();
             RunDay();
             MoneyAdding();
-        }
-        private void SetFinites()
-        {
-            throw new NotImplementedException();
-        }
+        }        
         private void ShowFinalProfit()
         {
             throw new NotImplementedException();
@@ -55,11 +53,18 @@ namespace LemonadeStand
         }
         private void GenerateSetting()
         {
-            throw new NotImplementedException();
+            Weather day = new LemonadeStand.Weather();
+            Console.WriteLine("The Current Weather Is: "+ day.GrabWeather() + " And the Temperature is: " + day.GrabTemp() + " Degrees");
+        }
+        private void SetFinites()
+        {
+            Console.WriteLine("The Predicted Weather for the week is:");
+            Console.WriteLine("Sunday: , Monday: , Tuesday: , Wednesday: , Thursday: , Friday: , Saturday: ");
+            Console.WriteLine("Your Begining Balance is : " + playerEins.CreateMoney() + "Dollars" );
         }
         private void GatherInfo()
         {
-            Player playerEins = new LemonadeStand.Player();
+            
             playerEins.GrabName();
 
         }
