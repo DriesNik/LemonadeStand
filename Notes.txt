@@ -1,0 +1,39 @@
+introduction
+
+generate weather for week\
+generate initial cash
+ask for name
+
+		start loop
+generate weater for the day
+generate temp
+ 
+price = 90> 80>70>60>50>40>30>20>10>5
+
+choose recipe, create the master recipe
+remove money for recipe
+
+generate max and min number of clients
+
+genrate peoples willingness to buy, affected by price and weather and temp
+run day
+
+end day
+grab number of people
+grab people who bought
+people who bought times price
+add money to balance
+add cost to cost total
+add money to balance total
+spit out profit
+spit out whitty remark
+
+end loop
+run loop 6 more times
+
+
+
+spit out final profit/loss
+
+ask to play again
+
