@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Program
+    class Player
     {
-        static void Main(string[] args)
-        {
-            Game LS = new Game();
-            LS.StartGame();
-        }
     }
 }
