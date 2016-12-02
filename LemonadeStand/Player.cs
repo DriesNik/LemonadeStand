@@ -8,5 +8,12 @@ namespace LemonadeStand
 {
     class Player
     {
+        string name;
+        public string GrabName()
+        {
+            Console.WriteLine("Please enter Your Name");
+            name = Console.ReadLine();
+            return name;
+        }
     }
 }

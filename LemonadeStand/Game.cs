@@ -13,8 +13,8 @@ namespace LemonadeStand
             StartIntro();
             GatherInfo();
             SetFinites();
-            ShowFinalProfit();
             DayByDayLoop();
+            ShowFinalProfit();            
         }
         private void DayByDayLoop()
         {
@@ -59,11 +59,14 @@ namespace LemonadeStand
         }
         private void GatherInfo()
         {
-            throw new NotImplementedException();
+            Player playerEins = new LemonadeStand.Player();
+            playerEins.GrabName();
+
         }
         private void StartIntro()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Welcome to LemonadeStand");
+            Console.WriteLine("The goal is to make the most profit possible by selling lemonade");
         }
     }
 }
