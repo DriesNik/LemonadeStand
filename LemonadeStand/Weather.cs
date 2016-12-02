@@ -11,6 +11,7 @@ namespace LemonadeStand
         Random r = new Random();
         public string weatherType;
         public int temp;
+        public double weatherBonus;
         public void CreateWeather()
         {
             int potentialWeather;
@@ -41,6 +42,44 @@ namespace LemonadeStand
                     break;
             }
 
+        }
+        public double ShowWeatherBonus()
+        {
+            if (weatherType == "Boiling")
+            {
+                weatherBonus = 5;
+                    return weatherBonus;
+            }
+            else if (weatherType == "hot")
+            {
+                weatherBonus = 4;
+                    return weatherBonus;
+            }
+            else if (weatherType == "Sunny")
+            {
+                weatherBonus = 3;
+                return weatherBonus;
+            }
+            else if (weatherType == "Cloudy")
+            {
+                weatherBonus = 2;
+                return weatherBonus;
+            }
+            else if (weatherType == "Raining")
+            {
+                weatherBonus = 1;
+                return weatherBonus;
+            }
+            else if ( weatherType == "Usual Wisconsin")
+            {
+                weatherBonus = -1;
+                return weatherBonus;
+            }
+            else
+            {
+                weatherBonus = 0;
+                return weatherBonus;
+            }
         }
         public void CreateTemp()
         {
