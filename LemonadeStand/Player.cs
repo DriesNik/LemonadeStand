@@ -8,23 +8,84 @@ namespace LemonadeStand
 {
     class Player
     {
-        Weather Day;
-        public Player(Weather day)
+        Weather Day;       
+        public Player(Weather day, Inventory barn)
         {
-            Day =  day;
-            
+            Day = day;            
         }
 
-        public Player()
-        {
-        }
+        
 
         string name;
-        int beginMoney;
+        double beginMoney;
         double sellingPower;
-        int recipeLemon;
-        int recipeSugar;
-        int recipeIce;
+        double recipeLemon;
+        double recipeSugar;
+        double recipeIce;
+        double recipeMoney;
+        double inventLemons;
+        double inventSugar;
+        double inventIce;
+        double currentMoney;
+        double maxPitchers;
+        double runningTotal;
+        public void BaseItems()
+        {
+            inventLemons = 0;
+            inventSugar = 0;
+            inventIce = 0;
+        }
+        public void MoneyProblems()
+        {
+            currentMoney = beginMoney;
+        }
+        public void MoneyForLemons()
+        {
+           currentMoney = ( currentMoney - 0.75);
+            runningTotal = (runningTotal - 0.75);
+        }
+        public void MoneyForSugar()
+        {
+            currentMoney = (currentMoney - 0.35);
+            runningTotal = (runningTotal - 0.35);
+        }
+        public void MoneyForIce()
+        {
+            currentMoney = (currentMoney - 0.10);
+            runningTotal = (runningTotal - 0.10);
+        }
+        public void AddLemons()
+        {
+            inventLemons++;
+        }
+        public void AddSugar()
+        {
+            inventSugar++;
+        }
+        public void AddIce()
+        {
+            inventIce++;
+        }
+        public void GetMaxPitchers()
+        {            
+               maxPitchers = Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce)));            
+        }
+        public double CheckPitchers()
+        {
+            return maxPitchers;
+        }       
+        public double ReturnLemon()
+        {
+            return inventLemons;
+        }
+        public double ReturnSugar()
+        {
+            return inventSugar;
+        }
+        public double ReturnIce()
+        {
+            return inventIce;
+        }
         public string GrabName()
         {
             Console.WriteLine("Please enter Your Name");
@@ -33,12 +94,58 @@ namespace LemonadeStand
         }
         public void MakeRecipe()
         {
-            Console.WriteLine("how many lemons");
-            recipeLemon = int.Parse(Console.ReadLine());
-            Console.WriteLine("How many sugars");
-            recipeSugar = int.Parse(Console.ReadLine());
-            Console.WriteLine("How many Ices");
-            recipeIce = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("how many lemons");
+                recipeLemon = int.Parse(Console.ReadLine());
+                Console.WriteLine("How many sugars");
+                recipeSugar = int.Parse(Console.ReadLine());
+                Console.WriteLine("How many Ices");
+                recipeIce = int.Parse(Console.ReadLine());
+                Console.WriteLine("how much per cup?");
+                recipeMoney = (double.Parse(Console.ReadLine()));
+            }
+            finally
+            {
+                Console.WriteLine("time to start the day");
+            }
+            
+        }
+        public double MoneyBonus()
+        {
+            if (recipeMoney <1)
+            {
+                return 5;
+            }
+            else if (recipeMoney < 0.75)
+            {
+                return 4;
+            }
+            else if (recipeMoney < 0.5)
+            {
+                return 3;
+            }
+            else if (recipeMoney <0.25)
+            {
+                return 2;
+            }
+            else if (recipeMoney == 0.25)
+            {
+                return 0;
+            }
+            else if (recipeMoney > 0.10)
+            {
+                return -2;
+            }
+            else if (recipeMoney > 0.25)
+            {
+                return -1;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
         public double LemonBonus()
         {
@@ -112,22 +219,64 @@ namespace LemonadeStand
                 return bonusIce;
             }
         }
-        public int CreateMoney()
+        public double CreateMoney()
         {
             Random r = new Random();
             beginMoney = r.Next(20, 100);
             return beginMoney;
         }
         public double GetWB()
-        {
-            
-            Day.ShowWeatherBonus();
-            return Day.ShowWeatherBonus();
+        {  
+            return Day.weatherBonus;
         }
+        public double TempBonus()
+        {
+            if (Day.GrabTemp() >90)
+            {
+                return 5;
+            }
+            else if(Day.GrabTemp() > 80)
+            {
+                return 4;
+            }
+            else if (Day.GrabTemp() > 70)
+            {
+                return 3;
+            }
+            else if (Day.GrabTemp() > 60)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+
         public double PowerToSell()
         {
-            sellingPower = ((GetWB() + LemonBonus() + IceBonus() + SugarBonus())* (3.75));
+            sellingPower = (((GetWB() + LemonBonus() + IceBonus() + SugarBonus() + TempBonus())-MoneyBonus()) * (3.5));
             return sellingPower;
         }
+        public double MoneyRecipe()
+        {
+            return recipeMoney;
+        }
+        public double GetMoney()
+        {
+            return currentMoney;
+        }
+        public void UsePitcher()
+        {
+            maxPitchers = (maxPitchers - 1);
+            inventLemons = inventLemons - recipeLemon;
+            inventSugar = inventSugar - recipeSugar;
+            inventIce = inventIce - recipeIce;
+        }
+        public double ReturnLoss()
+        {
+            return runningTotal;
+        } 
     }
 }

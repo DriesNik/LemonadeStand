@@ -9,37 +9,75 @@ namespace LemonadeStand
 {
     class Game
     {
-        Player playerEins = new Player();
-        Weather day = new LemonadeStand.Weather();
-        
-        public int cupsBought;
+        Inventory barn;
+        Weather day = new Weather();
+        Player playerEins;
+        public Game()
+        {            
+            playerEins = new Player(day, barn);
+            barn = new Inventory(playerEins);
+        }
+        public double cupsBought;
+        double dollaBils;
+        double netProfit;
+        int dayCount;
         public void StartGame()
         {
             StartIntro();
             GatherInfo();
             SetFinites();
-            Thread.Sleep(1000);
+            playerEins.MoneyProblems();           
             DayByDayLoop();
             ShowFinalProfit();            
         }
         private void DayByDayLoop()
         {
-            GenerateSetting();
-            Thread.Sleep(2000);
-            GetRecipe();
-            CheckInventory();
-            GenerateClients();
-            RunDay();
-            MoneyAdding();
-        }     
+            while (dayCount <= 6)
+            {
+                DisplayDay();
+                GenerateSetting();
+                Thread.Sleep(500);
+                CheckInventory();
+                GetRecipe();
+                CheckRecipe();
+                GenerateClients();
+                RunDay();
+                MoneyAdding();
+                Prof();
+                PlusDay();
+            }
+        }
+
+        private void DisplayDay()
+        {
+            Console.WriteLine("\n It is Day: " + (dayCount + 1));
+        }
+
+        private void PlusDay()
+        {
+            dayCount++;
+        }
+
+        private void CheckRecipe()
+        {
+            playerEins.GetMaxPitchers();
+        }
+
+        public void Prof()
+        {
+            netProfit = (playerEins.ReturnLoss() + dollaBils);
+            Console.WriteLine("Your running profit total is " + netProfit);
+        }
            
         private void ShowFinalProfit()
         {
-            throw new NotImplementedException();
+            Prof();
         }
         private void MoneyAdding()
         {
-            throw new NotImplementedException();
+            
+            dollaBils = (cupsBought * playerEins.MoneyRecipe());
+            Console.WriteLine("you made " + dollaBils + "dollars today");
         }
         private void RunDay()
         {
@@ -53,22 +91,49 @@ namespace LemonadeStand
             for (i = 1; i < 100; i++)
             {
                 Ai Dude = new Ai(day, playerEins);
-
-                switch (Dude.DidTheyBuy())
+                if (playerEins.CheckPitchers() >= 0)
                 {
-                    case 1:
-                        UpCup();
-                        break;
-                    default:
-                        break;
+                    switch (Dude.DidTheyBuy())
+                    {
+                        case 1:
+                            UpCup();
+                            break;
+                        default:
+                            break;
+                    }
                 }
-
-            }
-            //throw new NotImplementedException();
+                else
+                {
+                    break;
+                }
+                if (cupsBought % 12 == 0)
+                {
+                    playerEins.UsePitcher();
+                }
+                else
+                {
+                    break;
+                }
+            }            
         }
         private void CheckInventory()
         {
-            //throw new NotImplementedException();
+            
+            Console.WriteLine("You have " + playerEins.ReturnLemon() + " Lemons, " + playerEins.ReturnSugar() +" units of Sugar, " + playerEins.ReturnIce() + " units of Ice");
+            Console.WriteLine("Would you like to go to the store?");            
+            switch(Console.ReadLine())
+            {
+                case "yes":
+                    barn.StoreUi();
+                    break;
+                case "no":
+                    break;
+                default:
+                    Console.WriteLine("Invalid answer");
+                    CheckInventory();
+                    break;
+            }
+
         }
         private void GetRecipe()
         {
@@ -89,6 +154,7 @@ namespace LemonadeStand
         public void UpCup()
         {
             cupsBought++;
+            playerEins.UsePitcher();
 
         }
         private void GatherInfo()

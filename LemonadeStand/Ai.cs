@@ -10,8 +10,7 @@ namespace LemonadeStand
     class Ai
     {
        
-        Random r = new Random();
-        int buyChance;
+        Random r = new Random();        
         Player PlayerEins;
         Weather Day;
         public Ai(Weather day,Player playerEins)
@@ -19,9 +18,10 @@ namespace LemonadeStand
             Day = day;
             PlayerEins = playerEins;
         }
+        int buyChance;
         public int ChanceToBuy()
         {
-            Thread.Sleep(2);
+            Thread.Sleep(1);
             buyChance = r.Next(100);
             return buyChance;
         }

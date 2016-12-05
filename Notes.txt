@@ -18,10 +18,10 @@ generate max and min number of clients
 genrate peoples willingness to buy, affected by price and weather and temp
 run day
 
-end day
-grab number of people
-grab people who bought
-people who bought times price
+	end day
+	grab number of people
+	grab people who bought
+	people who bought times price
 add money to balance
 add cost to cost total
 add money to balance total
@@ -37,3 +37,4 @@ spit out final profit/loss
 
 ask to play again
 
+cloudy, raining, sunny, hot, boiling, Usual Wisconsin

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace LemonadeStand
         public void CreateWeather()
         {
             int potentialWeather;
-            
+            Thread.Sleep(r.Next(5));
             potentialWeather = r.Next(6);
             switch(potentialWeather)
             {
