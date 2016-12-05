@@ -54,7 +54,7 @@ namespace LemonadeStand
             int i;
             for (i = 0; i < d; i++)
             {
-                if (PlayerEins.GetMoney() > 0.75)
+                if (PlayerEins.GetMoney() > 0.20)
                 {
                     PlayerEins.AddLemons();
                     PlayerEins.MoneyForLemons();
@@ -76,7 +76,7 @@ namespace LemonadeStand
             int i;
             for (i = 0; i < d; i++)
             {
-                if (PlayerEins.GetMoney() > 0.35)
+                if (PlayerEins.GetMoney() > 0.15)
                 {
                     PlayerEins.AddSugar();
                     PlayerEins.MoneyForSugar();

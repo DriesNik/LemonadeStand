@@ -41,13 +41,13 @@ namespace LemonadeStand
         }
         public void MoneyForLemons()
         {
-           currentMoney = ( currentMoney - 0.75);
-            runningTotal = (runningTotal - 0.75);
+           currentMoney = ( currentMoney - 0.20);
+            runningTotal = (runningTotal - 0.20);
         }
         public void MoneyForSugar()
         {
-            currentMoney = (currentMoney - 0.35);
-            runningTotal = (runningTotal - 0.35);
+            currentMoney = (currentMoney - 0.15);
+            runningTotal = (runningTotal - 0.15);
         }
         public void MoneyForIce()
         {
@@ -68,7 +68,7 @@ namespace LemonadeStand
         }
         public void GetMaxPitchers()
         {            
-               maxPitchers = Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce)));            
+               maxPitchers = (Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce)))-1);            
         }
         public double CheckPitchers()
         {
@@ -125,11 +125,11 @@ namespace LemonadeStand
             {
                 return 3;
             }
-            else if (recipeMoney <0.25)
+            else if (recipeMoney <0.30)
             {
                 return 2;
             }
-            else if (recipeMoney == 0.25)
+            else if (recipeMoney == 0.30)
             {
                 return 0;
             }
@@ -137,7 +137,7 @@ namespace LemonadeStand
             {
                 return -2;
             }
-            else if (recipeMoney > 0.25)
+            else if (recipeMoney > 0.30)
             {
                 return -1;
             }
@@ -256,7 +256,7 @@ namespace LemonadeStand
 
         public double PowerToSell()
         {
-            sellingPower = (((GetWB() + LemonBonus() + IceBonus() + SugarBonus() + TempBonus())-MoneyBonus()) * (3.5));
+            sellingPower = (((GetWB() + LemonBonus() + IceBonus() + SugarBonus() + TempBonus())-MoneyBonus()) * 5);
             return sellingPower;
         }
         public double MoneyRecipe()

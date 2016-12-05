@@ -34,6 +34,7 @@ namespace LemonadeStand
         {
             while (dayCount <= 6)
             {
+                cupsBought = 0;
                 DisplayDay();
                 GenerateSetting();
                 Thread.Sleep(500);
@@ -87,7 +88,7 @@ namespace LemonadeStand
         private void GenerateClients()
         {
             int i;
-            cupsBought = 0;
+            
             for (i = 1; i < 100; i++)
             {
                 Ai Dude = new Ai(day, playerEins);
@@ -97,6 +98,14 @@ namespace LemonadeStand
                     {
                         case 1:
                             UpCup();
+                            if ((cupsBought % 12 == 0) && (cupsBought >=1))
+                            {
+                                playerEins.UsePitcher();
+                            }
+                            else
+                            {
+                                break;
+                            }
                             break;
                         default:
                             break;
@@ -106,14 +115,7 @@ namespace LemonadeStand
                 {
                     break;
                 }
-                if (cupsBought % 12 == 0)
-                {
-                    playerEins.UsePitcher();
-                }
-                else
-                {
-                    break;
-                }
+                
             }            
         }
         private void CheckInventory()
@@ -154,7 +156,7 @@ namespace LemonadeStand
         public void UpCup()
         {
             cupsBought++;
-            playerEins.UsePitcher();
+            
 
         }
         private void GatherInfo()
