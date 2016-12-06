@@ -13,7 +13,7 @@ namespace LemonadeStand
         public string weatherType;
         public int temp;
         public double weatherBonus;
-        public void CreateWeather()
+        public string CreateWeather()
         {
             int potentialWeather;
             Thread.Sleep(r.Next(5));
@@ -42,6 +42,7 @@ namespace LemonadeStand
                     CreateWeather();
                     break;
             }
+            return weatherType;
 
         }
         public double ShowWeatherBonus()
@@ -51,7 +52,7 @@ namespace LemonadeStand
                 weatherBonus = 5;
                     return weatherBonus;
             }
-            else if (weatherType == "hot")
+            else if (weatherType == "Hot")
             {
                 weatherBonus = 4;
                     return weatherBonus;
@@ -91,7 +92,6 @@ namespace LemonadeStand
             CreateTemp();
             return temp;
         }
-
         public string GrabWeather()
         {
             CreateWeather();

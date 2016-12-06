@@ -22,13 +22,13 @@ namespace LemonadeStand
         }
         public void Intro()
         {
-            Console.WriteLine("Welcoem to the Store");
+            Console.WriteLine("Welcome to the Store");
                      
         }
         public void StoreFront()
         {
-            Console.WriteLine("What would you like to buy? Lemons, Sugar, Ice, Nothing? ");
-            switch (Console.ReadLine())
+            Console.WriteLine("What would you like to buy? Lemons, Sugar, Ice, or Nothing?");
+            switch (Console.ReadLine().ToLower())
             {
                 case "lemons":
                     BuyLemons();
@@ -48,8 +48,8 @@ namespace LemonadeStand
         }
         public void BuyLemons()
         {
-            Console.WriteLine("Lemons are 75 cents");
-            Console.WriteLine("How Many Would You Like?");
+            Console.WriteLine("Lemons are 20 cents");
+            Console.WriteLine("How many would you like?");
             int d = (int.Parse(Console.ReadLine()));
             int i;
             for (i = 0; i < d; i++)
@@ -66,12 +66,13 @@ namespace LemonadeStand
                     break;
                 }
             }
+            Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
             StoreFront();
         }
         public void BuySugar()
         {
-            Console.WriteLine("Sugar Is 35 cents");
-            Console.WriteLine("How Many Would You Like?");
+            Console.WriteLine("Sugar Is 15 cents per unit");
+            Console.WriteLine("How many would you like?");
             int d = (int.Parse(Console.ReadLine()));
             int i;
             for (i = 0; i < d; i++)
@@ -88,12 +89,13 @@ namespace LemonadeStand
                     break;
                 }
             }
+            Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
             StoreFront();
         }
         public void BuyIce()
         {
-            Console.WriteLine("Ice is 10 cents");
-            Console.WriteLine("How Many Would You Like?");
+            Console.WriteLine("Ice is 10 cents per unit");
+            Console.WriteLine("How many would you like?");
             int d = (int.Parse(Console.ReadLine()));
             int i;
             for (i = 0; i < d; i++)
@@ -110,6 +112,7 @@ namespace LemonadeStand
                     break;
                 }
             }
+            Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
             StoreFront();
         }
     }

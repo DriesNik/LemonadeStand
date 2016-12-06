@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace LemonadeStand
 {
     class Ai
-    {
-       
+    {       
         Random r = new Random();        
         Player PlayerEins;
         Weather Day;
@@ -36,6 +35,5 @@ namespace LemonadeStand
                 return 0;
             }
         }
-
     }
 }

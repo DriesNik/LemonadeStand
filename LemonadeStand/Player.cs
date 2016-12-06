@@ -96,18 +96,18 @@ namespace LemonadeStand
         {
             try
             {
-                Console.WriteLine("how many lemons");
+                Console.WriteLine("How many lemons per pitcher?");
                 recipeLemon = int.Parse(Console.ReadLine());
-                Console.WriteLine("How many sugars");
+                Console.WriteLine("How many sugars per pitcher?");
                 recipeSugar = int.Parse(Console.ReadLine());
-                Console.WriteLine("How many Ices");
+                Console.WriteLine("How much ice per pitcher?");
                 recipeIce = int.Parse(Console.ReadLine());
-                Console.WriteLine("how much per cup?");
+                Console.WriteLine("How much would you like to charge per cup? 0.01 cents to 1.00 dollar");
                 recipeMoney = (double.Parse(Console.ReadLine()));
             }
             finally
             {
-                Console.WriteLine("time to start the day");
+                Console.WriteLine("Time to start the day");
             }
             
         }
@@ -125,11 +125,11 @@ namespace LemonadeStand
             {
                 return 3;
             }
-            else if (recipeMoney <0.30)
+            else if (recipeMoney <0.35)
             {
                 return 2;
             }
-            else if (recipeMoney == 0.30)
+            else if (recipeMoney == 0.35)
             {
                 return 0;
             }
@@ -137,7 +137,7 @@ namespace LemonadeStand
             {
                 return -2;
             }
-            else if (recipeMoney > 0.30)
+            else if (recipeMoney > 0.35)
             {
                 return -1;
             }
@@ -253,7 +253,6 @@ namespace LemonadeStand
             }
 
         }
-
         public double PowerToSell()
         {
             sellingPower = (((GetWB() + LemonBonus() + IceBonus() + SugarBonus() + TempBonus())-MoneyBonus()) * 5);
