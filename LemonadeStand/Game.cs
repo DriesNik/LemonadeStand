@@ -11,7 +11,7 @@ namespace LemonadeStand
     {
         Inventory barn;
         Weather day = new Weather();
-        Player playerEins;
+        Player playerEins;        
         public Game()
         {            
             playerEins = new Player(day, barn);
@@ -21,6 +21,7 @@ namespace LemonadeStand
         double dollaBils;
         double netProfit;
         int dayCount;
+        double paidAmount;
         public void StartGame()
         {
             StartIntro();
@@ -58,15 +59,16 @@ namespace LemonadeStand
                 Thread.Sleep(500);
                 CheckInventory();
                 GetRecipe();
-                GetPitcherCount();
+                GetPitcherCount();                
                 GenerateClients();
                 RunDay();
                 MoneyAdding();
                 Prof();
                 PlusDay();
                 MeltIce();
+                GotPaid();
             }
-        }
+        }       
 
         private void MeltIce()
         {
@@ -84,10 +86,18 @@ namespace LemonadeStand
         private void GetPitcherCount()
         {
             playerEins.GetMaxPitchers();
+            if (playerEins.GetMaxPitchers() > 0)
+            {
+                playerEins.UsePitcher();
+            }
+            else
+            {
+
+            }
         }
         public void Prof()
         {
-            netProfit = (playerEins.ReturnLoss() + dollaBils);
+            netProfit = (paidAmount + (playerEins.ReturnLoss()));
             Console.WriteLine("Your running profit total is "+netProfit+" Dollars");
         }           
         private void ShowFinalProfit()
@@ -99,6 +109,8 @@ namespace LemonadeStand
             
             dollaBils = (cupsBought * playerEins.MoneyRecipe());
             Console.WriteLine("You have made "+dollaBils+" dollars today.");
+            paidAmount = (paidAmount + dollaBils);
+
         }
         private void RunDay()
         {
@@ -118,7 +130,7 @@ namespace LemonadeStand
                     {
                         case 1:
                             UpCup();
-                            if ((cupsBought % 12 == 0) && (cupsBought >=1))
+                            if ((cupsBought >=1) && (cupsBought % 12 == 0))
                             {
                                 playerEins.UsePitcher();
                             }
@@ -186,6 +198,14 @@ namespace LemonadeStand
             Console.WriteLine("Welcome to LemonadeStand");
             Console.WriteLine("The goal is to make the most profit possible by selling lemonade");
             Console.WriteLine("There are 12 cups per Pitcher");
+        }
+        public double MoneyObtained()
+        {
+            return dollaBils;
+        }
+        public void GotPaid()
+        {
+            playerEins.currentMoney = (MoneyObtained() + playerEins.currentMoney);
         }
     }
 }

@@ -42,78 +42,105 @@ namespace LemonadeStand
                 case "nothing":
                     break;
                 default:
+                    Console.WriteLine("Please enter one of the options");
                     StoreFront();
                     break;
             }
         }
         public void BuyLemons()
         {
-            Console.WriteLine("Lemons are 20 cents");
-            Console.WriteLine("How many would you like?");
-            int d = (int.Parse(Console.ReadLine()));
-            int i;
-            for (i = 0; i < d; i++)
+            try
             {
-                if (PlayerEins.GetMoney() > 0.20)
+                Console.WriteLine("Lemons are 20 cents");
+                Console.WriteLine("How many would you like?");
+
+                int d = (int.Parse(Console.ReadLine()));
+
+                int i;
+                for (i = 0; i < d; i++)
                 {
-                    PlayerEins.AddLemons();
-                    PlayerEins.MoneyForLemons();
+                    if (PlayerEins.GetMoney() > 0.20)
+                    {
+                        PlayerEins.AddLemons();
+                        PlayerEins.MoneyForLemons();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have bought " + i);
+                        Console.WriteLine("You cant afford any more");
+                        break;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("You have bought " + i);
-                    Console.WriteLine("You cant afford any more");
-                    break;
-                }
+                Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
+                StoreFront();
             }
-            Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
-            StoreFront();
+            catch(System.FormatException)
+            {
+                Console.WriteLine("Invalid Answer");
+                BuyLemons();
+            }
         }
         public void BuySugar()
         {
-            Console.WriteLine("Sugar Is 15 cents per unit");
-            Console.WriteLine("How many would you like?");
-            int d = (int.Parse(Console.ReadLine()));
-            int i;
-            for (i = 0; i < d; i++)
+            try
             {
-                if (PlayerEins.GetMoney() > 0.15)
+                Console.WriteLine("Sugar Is 15 cents per unit");
+                Console.WriteLine("How many would you like?");
+                int d = (int.Parse(Console.ReadLine()));
+                int i;
+                for (i = 0; i < d; i++)
                 {
-                    PlayerEins.AddSugar();
-                    PlayerEins.MoneyForSugar();
+                    if (PlayerEins.GetMoney() > 0.15)
+                    {
+                        PlayerEins.AddSugar();
+                        PlayerEins.MoneyForSugar();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have bought " + i);
+                        Console.WriteLine("You cant afford any more");
+                        break;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("You have bought " + i);
-                    Console.WriteLine("You cant afford any more");
-                    break;
-                }
+                Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
+                StoreFront();
             }
-            Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
-            StoreFront();
+            catch(System.FormatException)
+            {
+                Console.WriteLine("Invalid Answer");
+                BuySugar();
+            }
         }
         public void BuyIce()
         {
-            Console.WriteLine("Ice is 10 cents per unit");
-            Console.WriteLine("How many would you like?");
-            int d = (int.Parse(Console.ReadLine()));
-            int i;
-            for (i = 0; i < d; i++)
+            try
             {
-                if (PlayerEins.GetMoney() > 0.10)
+                Console.WriteLine("Ice is 10 cents per unit");
+                Console.WriteLine("How many would you like?");
+                int d = (int.Parse(Console.ReadLine()));
+                int i;
+                for (i = 0; i < d; i++)
                 {
-                    PlayerEins.AddIce();
-                    PlayerEins.MoneyForIce();
+                    if (PlayerEins.GetMoney() > 0.10)
+                    {
+                        PlayerEins.AddIce();
+                        PlayerEins.MoneyForIce();
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have bought " + i);
+                        Console.WriteLine("You cant afford any more");
+                        break;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("You have bought " + i);
-                    Console.WriteLine("You cant afford any more");
-                    break;
-                }
+                Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
+                StoreFront();
             }
-            Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
-            StoreFront();
+            catch(System.FormatException)
+            {
+                Console.WriteLine("Invalid Answer");
+                BuyIce();
+            }
         }
     }
 }

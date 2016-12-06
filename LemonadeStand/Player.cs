@@ -8,7 +8,8 @@ namespace LemonadeStand
 {
     class Player
     {
-        Weather Day;       
+        
+        Weather Day;
         public Player(Weather day, Inventory barn)
         {
             Day = day;            
@@ -26,7 +27,7 @@ namespace LemonadeStand
         double inventLemons;
         double inventSugar;
         double inventIce;
-        double currentMoney;
+        public double currentMoney;
         double maxPitchers;
         double runningTotal;
         public void BaseItems()
@@ -38,9 +39,10 @@ namespace LemonadeStand
         public void MoneyProblems()
         {
             currentMoney = beginMoney;
-        }
+        }        
         public void MoneyForLemons()
         {
+            
            currentMoney = ( currentMoney - 0.20);
             runningTotal = (runningTotal - 0.20);
         }
@@ -66,9 +68,10 @@ namespace LemonadeStand
         {
             inventIce++;
         }
-        public void GetMaxPitchers()
+        public double GetMaxPitchers()
         {            
-               maxPitchers = (Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce)))-1);            
+               maxPitchers = (Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce)))-1);
+            return maxPitchers;     
         }
         public double CheckPitchers()
         {
@@ -98,18 +101,43 @@ namespace LemonadeStand
             {
                 Console.WriteLine("How many lemons per pitcher?");
                 recipeLemon = int.Parse(Console.ReadLine());
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Invalid answer. Check your answer.");
+                MakeRecipe();
+            }
+            try
+            {
                 Console.WriteLine("How many sugars per pitcher?");
                 recipeSugar = int.Parse(Console.ReadLine());
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Invalid answer. Check your answer.");
+                MakeRecipe();
+            }
+            try
+            {
                 Console.WriteLine("How much ice per pitcher?");
                 recipeIce = int.Parse(Console.ReadLine());
-                Console.WriteLine("How much would you like to charge per cup? 0.01 cents to 1.00 dollar");
+            }
+            catch (System.FormatException)
+            {
+                Console.WriteLine("Invalid answer. Check your answer.");
+                MakeRecipe();
+            }
+            try
+            { 
+            Console.WriteLine("How much would you like to charge per cup? 0.01 cents to 1.00 dollar");
                 recipeMoney = (double.Parse(Console.ReadLine()));
             }
-            finally
+            catch (System.FormatException)
             {
-                Console.WriteLine("Time to start the day");
+                Console.WriteLine("Invalid answer. Check your answer.");
+                MakeRecipe();
             }
-            
+            Console.WriteLine("Time to start the day");
         }
         public double MoneyBonus()
         {
@@ -281,5 +309,6 @@ namespace LemonadeStand
         {
             inventIce = 0;
         }
+       
     }
 }
