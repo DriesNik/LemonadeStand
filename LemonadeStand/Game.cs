@@ -64,8 +64,15 @@ namespace LemonadeStand
                 MoneyAdding();
                 Prof();
                 PlusDay();
+                MeltIce();
             }
         }
+
+        private void MeltIce()
+        {
+            playerEins.MeltIce();
+        }
+
         private void DisplayDay()
         {
             Console.WriteLine("\nIt is Day: " + (dayCount + 1));

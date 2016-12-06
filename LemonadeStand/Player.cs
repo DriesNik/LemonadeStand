@@ -277,5 +277,9 @@ namespace LemonadeStand
         {
             return runningTotal;
         } 
+        public void MeltIce()
+        {
+            inventIce = 0;
+        }
     }
 }
