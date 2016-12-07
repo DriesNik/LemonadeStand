@@ -73,6 +73,7 @@ namespace LemonadeStand
         private void MeltIce()
         {
             playerEins.MeltIce();
+            Console.WriteLine("The rest of your ice has melted");
         }
 
         private void DisplayDay()

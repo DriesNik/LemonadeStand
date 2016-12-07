@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 namespace LemonadeStand
 {
     class Player
-    {
-        
+    {        
         Weather Day;
         public Player(Weather day, Inventory barn)
         {
             Day = day;            
         }
-
-        
-
         string name;
         double beginMoney;
         double sellingPower;
@@ -308,7 +304,6 @@ namespace LemonadeStand
         public void MeltIce()
         {
             inventIce = 0;
-        }
-       
+        }       
     }
 }
