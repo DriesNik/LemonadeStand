@@ -59,16 +59,28 @@ namespace LemonadeStand
                 Thread.Sleep(500);
                 CheckInventory();
                 GetRecipe();
-                GetPitcherCount();                
+                GetPitcherCount();
+                UseFirstPitcher();               
                 GenerateClients();
                 RunDay();
                 MoneyAdding();
                 Prof();
                 PlusDay();
                 MeltIce();
+                RestoreBalance();
                 GotPaid();
             }
-        }       
+        }
+
+        private void RestoreBalance()
+        {
+            playerEins.RestoreBalance();
+        }
+
+        private void UseFirstPitcher()
+        {
+            playerEins.UseFirstPitcher();
+        }
 
         private void MeltIce()
         {
@@ -86,15 +98,7 @@ namespace LemonadeStand
         }
         private void GetPitcherCount()
         {
-            playerEins.GetMaxPitchers();
-            if (playerEins.GetMaxPitchers() > 0)
-            {
-                playerEins.UsePitcher();
-            }
-            else
-            {
-
-            }
+            playerEins.GetMaxPitchers();           
         }
         public void Prof()
         {
@@ -131,9 +135,14 @@ namespace LemonadeStand
                     {
                         case 1:
                             UpCup();
-                            if ((cupsBought >=1) && (cupsBought % 12 == 0))
+                            if ((cupsBought >= 1) && (cupsBought % 12 == 0) && (playerEins.CheckPitchers() > 0))
                             {
                                 playerEins.UsePitcher();
+                            }
+                            else if (playerEins.CheckPitchers() == 0)
+                            {
+                                cupsBought = cupsBought - 1;
+                                break;
                             }
                             else
                             {

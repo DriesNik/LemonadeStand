@@ -66,9 +66,10 @@ namespace LemonadeStand
         }
         public double GetMaxPitchers()
         {            
-               maxPitchers = (Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce)))-1);
+               maxPitchers = (Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce))));
             return maxPitchers;     
         }
+
         public double CheckPitchers()
         {
             return maxPitchers;
@@ -297,6 +298,12 @@ namespace LemonadeStand
             inventSugar = inventSugar - recipeSugar;
             inventIce = inventIce - recipeIce;
         }
+        public void UseFirstPitcher()
+        {
+            inventLemons = inventLemons - recipeLemon;
+            inventSugar = inventSugar - recipeSugar;
+            inventIce = inventIce - recipeIce;
+        }
         public double ReturnLoss()
         {
             return runningTotal;
@@ -305,5 +312,10 @@ namespace LemonadeStand
         {
             inventIce = 0;
         }       
+        public void RestoreBalance()
+        {
+            inventLemons = inventLemons + recipeLemon;
+            inventSugar = inventSugar + recipeSugar;
+        }
     }
 }
