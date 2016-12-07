@@ -74,7 +74,14 @@ namespace LemonadeStand
 
         private void RestoreBalance()
         {
-            playerEins.RestoreBalance();
+            if (cupsBought > 12)
+            {
+                playerEins.RestoreBalance();
+            }
+            else
+            {
+
+            }
         }
 
         private void UseFirstPitcher()
@@ -102,8 +109,8 @@ namespace LemonadeStand
         }
         public void Prof()
         {
-            netProfit = (paidAmount + (playerEins.ReturnLoss()));
-            Console.WriteLine("Your running profit total is "+netProfit+" Dollars");
+            netProfit = (paidAmount + (Math.Round(playerEins.ReturnLoss(),2)));
+            Console.WriteLine("Your running profit total is "+Math.Round(netProfit,2)+" Dollars");
         }           
         private void ShowFinalProfit()
         {
@@ -112,9 +119,9 @@ namespace LemonadeStand
         private void MoneyAdding()
         {
             
-            dollaBils = (cupsBought * playerEins.MoneyRecipe());
+            dollaBils = Math.Round((cupsBought * playerEins.MoneyRecipe()),2);
             Console.WriteLine("You have made "+dollaBils+" dollars today.");
-            paidAmount = (paidAmount + dollaBils);
+            paidAmount = Math.Round((paidAmount + dollaBils),2);
 
         }
         private void RunDay()
@@ -163,7 +170,7 @@ namespace LemonadeStand
         private void CheckInventory()
         {
             
-            Console.WriteLine("You have " + playerEins.ReturnLemon() + " Lemons, " + playerEins.ReturnSugar() +" units of Sugar, " + playerEins.ReturnIce() + " units of Ice");
+            Console.WriteLine("You have " + playerEins.ReturnLemon() + " Lemons, " + playerEins.ReturnSugar() +" units of Sugar, " + playerEins.ReturnIce() + " units of Ice and "+ playerEins.GetMoney() + " Dollars");
             Console.WriteLine("Would you like to go to the store?");            
             switch(Console.ReadLine())
             {

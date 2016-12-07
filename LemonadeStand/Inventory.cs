@@ -71,7 +71,7 @@ namespace LemonadeStand
                         break;
                     }
                 }
-                Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
+                Console.WriteLine("Your current balance is : " + Math.Round(PlayerEins.GetMoney(), 2));
                 StoreFront();
             }
             catch(System.FormatException)
@@ -102,7 +102,7 @@ namespace LemonadeStand
                         break;
                     }
                 }
-                Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
+                Console.WriteLine("Your current balance is : " + Math.Round(PlayerEins.GetMoney(),2 ));
                 StoreFront();
             }
             catch(System.FormatException)
@@ -133,7 +133,7 @@ namespace LemonadeStand
                         break;
                     }
                 }
-                Console.WriteLine("Your current balance is : " + PlayerEins.GetMoney());
+                Console.WriteLine("Your current balance is : " + Math.Round(PlayerEins.GetMoney(),2 ));
                 StoreFront();
             }
             catch(System.FormatException)
