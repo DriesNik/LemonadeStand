@@ -11,6 +11,10 @@ namespace LemonadeStand
 
         Random r = new Random();
         Player PlayerEins;
+        double lemonPrice;
+        double sugarPrice;
+        double icePrice;
+        
 
         public Inventory(Player playerEins)
         {
@@ -54,6 +58,7 @@ namespace LemonadeStand
 
         public void BuyLemons()
         {
+            lemonPrice = 0.20;
             try
             {
                 Console.WriteLine("Lemons are 20 cents");
@@ -64,7 +69,7 @@ namespace LemonadeStand
                 int i;
                 for (i = 0; i < numberRequested; i++)
                 {
-                    if (PlayerEins.GetMoney() > 0.20)
+                    if (PlayerEins.GetMoney() > lemonPrice)
                     {
                         PlayerEins.AddLemons();
                         PlayerEins.MoneyForLemons();
@@ -88,6 +93,7 @@ namespace LemonadeStand
 
         public void BuySugar()
         {
+            sugarPrice = 0.15;
             try
             {
                 Console.WriteLine("Sugar Is 15 cents per unit");
@@ -96,7 +102,7 @@ namespace LemonadeStand
                 int i;
                 for (i = 0; i < numberRequested; i++)
                 {
-                    if (PlayerEins.GetMoney() > 0.15)
+                    if (PlayerEins.GetMoney() > sugarPrice)
                     {
                         PlayerEins.AddSugar();
                         PlayerEins.MoneyForSugar();
@@ -120,6 +126,7 @@ namespace LemonadeStand
 
         public void BuyIce()
         {
+            icePrice = 0.10;
             try
             {
                 Console.WriteLine("Ice is 10 cents per unit");
@@ -128,7 +135,7 @@ namespace LemonadeStand
                 int i;
                 for (i = 0; i < numberRequested; i++)
                 {
-                    if (PlayerEins.GetMoney() > 0.10)
+                    if (PlayerEins.GetMoney() > icePrice)
                     {
                         PlayerEins.AddIce();
                         PlayerEins.MoneyForIce();
