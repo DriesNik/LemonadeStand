@@ -18,7 +18,7 @@ namespace LemonadeStand
             barn = new Inventory(playerEins);
         }
         public double cupsBought;
-        double dollaBils;
+        double moneyMade;
         double netProfit;
         int dayCount;
         double paidAmount;
@@ -26,7 +26,7 @@ namespace LemonadeStand
         {
             StartIntro();
             GatherInfo();
-            SetFinites();
+            SetInitialConditions();
             playerEins.MoneyProblems();           
             DayByDayLoop();
             ShowFinalProfit();
@@ -55,15 +55,15 @@ namespace LemonadeStand
             {
                 cupsBought = 0;
                 DisplayDay();
-                GenerateSetting();
+                GenerateWeather();
                 Thread.Sleep(500);
                 CheckInventory();
                 GetRecipe();
                 GetPitcherCount();
                 UseFirstPitcher();               
                 GenerateClients();
-                RunDay();
-                MoneyAdding();
+                DisplayCupsBought();
+                DisplayMoneyMade();
                 Prof();
                 PlusDay();
                 MeltIce();
@@ -116,15 +116,15 @@ namespace LemonadeStand
         {
             Prof();
         }
-        private void MoneyAdding()
+        private void DisplayMoneyMade()
         {
             
-            dollaBils = Math.Round((cupsBought * playerEins.MoneyRecipe()),2);
-            Console.WriteLine("You have made "+dollaBils+" dollars today.");
-            paidAmount = Math.Round((paidAmount + dollaBils),2);
+            moneyMade = Math.Round((cupsBought * playerEins.MoneyRecipe()),2);
+            Console.WriteLine("You have made "+moneyMade+" dollars today.");
+            paidAmount = Math.Round((paidAmount + moneyMade),2);
 
         }
-        private void RunDay()
+        private void DisplayCupsBought()
         {
             Console.WriteLine("This many were cups bought");
             Console.WriteLine(cupsBought);
@@ -141,7 +141,7 @@ namespace LemonadeStand
                     switch (Dude.DidTheyBuy())
                     {
                         case 1:
-                            UpCup();
+                            IncreaseCupsBought();
                             if ((cupsBought >= 1) && (cupsBought % 12 == 0) && (playerEins.CheckPitchers() > 0))
                             {
                                 playerEins.UsePitcher();
@@ -190,19 +190,19 @@ namespace LemonadeStand
         {
             playerEins.MakeRecipe();
         }
-        private void GenerateSetting()
+        private void GenerateWeather()
         {
             
             Console.WriteLine("The current Weather is: "+ day.GrabWeather() + ", and the Temperature is: " + day.GrabTemp() + " Degrees");
             day.ShowWeatherBonus();
         }
-        private void SetFinites()
+        private void SetInitialConditions()
         {
             Console.WriteLine("The Predicted Weather for the week is:");
             Console.WriteLine("Sunday: "+day.CreateWeather()+", Monday: "+day.CreateWeather()+", Tuesday: "+day.CreateWeather()+", Wednesday: "+day.CreateWeather()+", Thursday: "+day.CreateWeather()+", Friday: "+day.CreateWeather()+", Saturday: "+day.CreateWeather());
             Console.WriteLine("Your Begining Balance is : " + playerEins.CreateMoney() + " Dollars");
         }
-        public void UpCup()
+        public void IncreaseCupsBought()
         {
             cupsBought++;
         }
@@ -218,7 +218,7 @@ namespace LemonadeStand
         }
         public double MoneyObtained()
         {
-            return dollaBils;
+            return moneyMade;
         }
         public void GotPaid()
         {

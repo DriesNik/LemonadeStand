@@ -54,10 +54,10 @@ namespace LemonadeStand
                 Console.WriteLine("Lemons are 20 cents");
                 Console.WriteLine("How many would you like?");
 
-                int d = (int.Parse(Console.ReadLine()));
+                int numberBought = (int.Parse(Console.ReadLine()));
 
                 int i;
-                for (i = 0; i < d; i++)
+                for (i = 0; i < numberBought; i++)
                 {
                     if (PlayerEins.GetMoney() > 0.20)
                     {
@@ -86,9 +86,9 @@ namespace LemonadeStand
             {
                 Console.WriteLine("Sugar Is 15 cents per unit");
                 Console.WriteLine("How many would you like?");
-                int d = (int.Parse(Console.ReadLine()));
+                int numberBought = (int.Parse(Console.ReadLine()));
                 int i;
-                for (i = 0; i < d; i++)
+                for (i = 0; i < numberBought; i++)
                 {
                     if (PlayerEins.GetMoney() > 0.15)
                     {
@@ -117,9 +117,9 @@ namespace LemonadeStand
             {
                 Console.WriteLine("Ice is 10 cents per unit");
                 Console.WriteLine("How many would you like?");
-                int d = (int.Parse(Console.ReadLine()));
+                int numberBought = (int.Parse(Console.ReadLine()));
                 int i;
-                for (i = 0; i < d; i++)
+                for (i = 0; i < numberBought; i++)
                 {
                     if (PlayerEins.GetMoney() > 0.10)
                     {

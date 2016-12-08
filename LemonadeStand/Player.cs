@@ -14,7 +14,7 @@ namespace LemonadeStand
             Day = day;            
         }
         string name;
-        double beginMoney;
+        double beginingMoney;
         double sellingPower;
         double recipeLemon;
         double recipeSugar;
@@ -34,7 +34,7 @@ namespace LemonadeStand
         }
         public void MoneyProblems()
         {
-            currentMoney = beginMoney;
+            currentMoney = beginingMoney;
         }        
         public void MoneyForLemons()
         {
@@ -247,8 +247,8 @@ namespace LemonadeStand
         public double CreateMoney()
         {
             Random r = new Random();
-            beginMoney = r.Next(20, 100);
-            return beginMoney;
+            beginingMoney = r.Next(20, 100);
+            return beginingMoney;
         }
         public double GetWB()
         {  
