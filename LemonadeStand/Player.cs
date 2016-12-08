@@ -326,9 +326,16 @@ namespace LemonadeStand
 
         public void UseFirstPitcher()
         {
-            inventLemons = inventLemons - recipeLemon;
-            inventSugar = inventSugar - recipeSugar;
-            inventIce = inventIce - recipeIce;
+            if (CheckPitchers() > 0)
+            {
+                inventLemons = inventLemons - recipeLemon;
+                inventSugar = inventSugar - recipeSugar;
+                inventIce = inventIce - recipeIce;
+            }
+            else
+            {
+
+            }
         }
 
         public double ReturnLoss()
