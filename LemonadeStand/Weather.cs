@@ -13,6 +13,7 @@ namespace LemonadeStand
         public string weatherType;
         public int temp;
         public double weatherBonus;
+
         public string CreateWeather()
         {
             int potentialWeather;
@@ -45,6 +46,7 @@ namespace LemonadeStand
             return weatherType;
 
         }
+
         public double ShowWeatherBonus()
         {
             if (weatherType == "Boiling")
@@ -83,15 +85,18 @@ namespace LemonadeStand
                 return weatherBonus;
             }
         }
+
         public void CreateTemp()
         {
           temp = r.Next(60, 99);
         }
+
         public int GrabTemp()
         {
             CreateTemp();
             return temp;
         }
+
         public string GrabWeather()
         {
             CreateWeather();

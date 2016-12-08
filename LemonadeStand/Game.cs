@@ -28,8 +28,7 @@ namespace LemonadeStand
             GatherInfo();
             SetInitialConditions();
             playerEins.MoneyProblems();           
-            DayByDayLoop();
-            ShowFinalProfit();
+            DayByDayLoop();            
             EndGame();                       
         }
         private void EndGame()
@@ -49,6 +48,7 @@ namespace LemonadeStand
                     break;
                 }
         }
+
         private void DayByDayLoop()
         {
             while (dayCount <= 6)
@@ -57,7 +57,7 @@ namespace LemonadeStand
                 DisplayDay();
                 GenerateWeather();
                 Thread.Sleep(500);
-                CheckInventory();
+                CheckItems();
                 GetRecipe();
                 GetPitcherCount();
                 UseFirstPitcher();               
@@ -99,36 +99,38 @@ namespace LemonadeStand
         {
             Console.WriteLine("\nIt is Day: " + (dayCount + 1));
         }
+
         private void PlusDay()
         {
             dayCount++;
         }
+
         private void GetPitcherCount()
         {
             playerEins.GetMaxPitchers();           
         }
+
         public void Prof()
         {
             netProfit = (paidAmount + (Math.Round(playerEins.ReturnLoss(),2)));
             Console.WriteLine("Your running profit total is "+Math.Round(netProfit,2)+" Dollars");
-        }           
-        private void ShowFinalProfit()
-        {
-            Prof();
-        }
+        }                   
+
         private void DisplayMoneyMade()
         {
             
             moneyMade = Math.Round((cupsBought * playerEins.MoneyRecipe()),2);
-            Console.WriteLine("You have made "+moneyMade+" dollars today.");
+            Console.WriteLine("You have made "+ moneyMade +" dollars today.");
             paidAmount = Math.Round((paidAmount + moneyMade),2);
 
         }
+
         private void DisplayCupsBought()
         {
             Console.WriteLine("This many were cups bought");
             Console.WriteLine(cupsBought);
         }
+
         private void GenerateClients()
         {
             int i;
@@ -167,7 +169,8 @@ namespace LemonadeStand
                 
             }            
         }
-        private void CheckInventory()
+
+        private void CheckItems()
         {
             
             Console.WriteLine("You have " + playerEins.ReturnLemon() + " Lemons, " + playerEins.ReturnSugar() +" units of Sugar, " + playerEins.ReturnIce() + " units of Ice and "+ playerEins.GetMoney() + " Dollars");
@@ -181,48 +184,51 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Invalid answer");
-                    CheckInventory();
+                    CheckItems();
                     break;
             }
 
         }
+
         private void GetRecipe()
         {
             playerEins.MakeRecipe();
         }
+
         private void GenerateWeather()
         {
             
             Console.WriteLine("The current Weather is: "+ day.GrabWeather() + ", and the Temperature is: " + day.GrabTemp() + " Degrees");
             day.ShowWeatherBonus();
         }
+
         private void SetInitialConditions()
         {
             Console.WriteLine("The Predicted Weather for the week is:");
             Console.WriteLine("Sunday: "+day.CreateWeather()+", Monday: "+day.CreateWeather()+", Tuesday: "+day.CreateWeather()+", Wednesday: "+day.CreateWeather()+", Thursday: "+day.CreateWeather()+", Friday: "+day.CreateWeather()+", Saturday: "+day.CreateWeather());
             Console.WriteLine("Your Begining Balance is : " + playerEins.CreateMoney() + " Dollars");
         }
+
         public void IncreaseCupsBought()
         {
             cupsBought++;
         }
+
         private void GatherInfo()
         {            
             playerEins.GrabName();
         }
+
         private void StartIntro()
         {
             Console.WriteLine("Welcome to LemonadeStand");
             Console.WriteLine("The goal is to make the most profit possible by selling lemonade");
             Console.WriteLine("There are 12 cups per Pitcher");
-        }
-        public double MoneyObtained()
+        }        
+
+        private void GotPaid()
         {
-            return moneyMade;
-        }
-        public void GotPaid()
-        {
-            playerEins.currentMoney = (MoneyObtained() + playerEins.currentMoney);
+            playerEins.currentMoney = (moneyMade + playerEins.currentMoney);
         }
     }
 }

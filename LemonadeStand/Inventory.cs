@@ -11,20 +11,24 @@ namespace LemonadeStand
 
         Random r = new Random();
         Player PlayerEins;
+
         public Inventory(Player playerEins)
         {
             PlayerEins = playerEins;
         }      
-       public void StoreUi()
+
+        public void StoreUi()
         {
             Intro();
             StoreFront();
         }
+
         public void Intro()
         {
             Console.WriteLine("Welcome to the Store");
                      
         }
+
         public void StoreFront()
         {
             Console.WriteLine("What would you like to buy? Lemons, Sugar, Ice, or Nothing?");
@@ -47,6 +51,7 @@ namespace LemonadeStand
                     break;
             }
         }
+
         public void BuyLemons()
         {
             try
@@ -54,10 +59,10 @@ namespace LemonadeStand
                 Console.WriteLine("Lemons are 20 cents");
                 Console.WriteLine("How many would you like?");
 
-                int numberBought = (int.Parse(Console.ReadLine()));
+                int numberRequested = (int.Parse(Console.ReadLine()));
 
                 int i;
-                for (i = 0; i < numberBought; i++)
+                for (i = 0; i < numberRequested; i++)
                 {
                     if (PlayerEins.GetMoney() > 0.20)
                     {
@@ -80,15 +85,16 @@ namespace LemonadeStand
                 BuyLemons();
             }
         }
+
         public void BuySugar()
         {
             try
             {
                 Console.WriteLine("Sugar Is 15 cents per unit");
                 Console.WriteLine("How many would you like?");
-                int numberBought = (int.Parse(Console.ReadLine()));
+                int numberRequested = (int.Parse(Console.ReadLine()));
                 int i;
-                for (i = 0; i < numberBought; i++)
+                for (i = 0; i < numberRequested; i++)
                 {
                     if (PlayerEins.GetMoney() > 0.15)
                     {
@@ -111,15 +117,16 @@ namespace LemonadeStand
                 BuySugar();
             }
         }
+
         public void BuyIce()
         {
             try
             {
                 Console.WriteLine("Ice is 10 cents per unit");
                 Console.WriteLine("How many would you like?");
-                int numberBought = (int.Parse(Console.ReadLine()));
+                int numberRequested = (int.Parse(Console.ReadLine()));
                 int i;
-                for (i = 0; i < numberBought; i++)
+                for (i = 0; i < numberRequested; i++)
                 {
                     if (PlayerEins.GetMoney() > 0.10)
                     {

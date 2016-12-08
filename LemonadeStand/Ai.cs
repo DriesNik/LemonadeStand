@@ -17,13 +17,16 @@ namespace LemonadeStand
             Day = day;
             PlayerEins = playerEins;
         }
+
         int buyChance;
+
         public int ChanceToBuy()
         {
             Thread.Sleep(1);
             buyChance = r.Next(100);
             return buyChance;
         }
+
         public int DidTheyBuy()
         {
             if (ChanceToBuy() <= PlayerEins.PowerToSell())

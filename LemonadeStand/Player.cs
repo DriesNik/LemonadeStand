@@ -26,44 +26,53 @@ namespace LemonadeStand
         public double currentMoney;
         double maxPitchers;
         double runningTotal;
+
         public void BaseItems()
         {
             inventLemons = 0;
             inventSugar = 0;
             inventIce = 0;
         }
+
         public void MoneyProblems()
         {
             currentMoney = beginingMoney;
         }        
+
         public void MoneyForLemons()
         {
             
            currentMoney = ( currentMoney - 0.20);
             runningTotal = (runningTotal - 0.20);
         }
+
         public void MoneyForSugar()
         {
             currentMoney = (currentMoney - 0.15);
             runningTotal = (runningTotal - 0.15);
         }
+
         public void MoneyForIce()
         {
             currentMoney = (currentMoney - 0.10);
             runningTotal = (runningTotal - 0.10);
         }
+
         public void AddLemons()
         {
             inventLemons++;
         }
+
         public void AddSugar()
         {
             inventSugar++;
         }
+
         public void AddIce()
         {
             inventIce++;
         }
+
         public double GetMaxPitchers()
         {            
                maxPitchers = (Math.Min((inventLemons / recipeMoney), Math.Min((inventSugar / recipeSugar), (inventIce / recipeIce))));
@@ -74,24 +83,29 @@ namespace LemonadeStand
         {
             return maxPitchers;
         }       
+
         public double ReturnLemon()
         {
             return inventLemons;
         }
+
         public double ReturnSugar()
         {
             return inventSugar;
         }
+
         public double ReturnIce()
         {
             return inventIce;
         }
+
         public string GrabName()
         {
             Console.WriteLine("Please enter Your Name");
             name = Console.ReadLine();
             return name;
         }
+
         public void MakeRecipe()
         {
             try
@@ -136,6 +150,7 @@ namespace LemonadeStand
             }
             Console.WriteLine("Time to start the day");
         }
+
         public double MoneyBonus()
         {
             if (recipeMoney <1)
@@ -172,6 +187,7 @@ namespace LemonadeStand
             }
 
         }
+
         public double LemonBonus()
         {
             int bonusLemon;
@@ -196,6 +212,7 @@ namespace LemonadeStand
                 return bonusLemon;
             }
         }
+
         public double SugarBonus()
         {
             int bonusSugar;
@@ -220,6 +237,7 @@ namespace LemonadeStand
                 return bonusSugar;
             }
         }
+
         public double IceBonus()
         {
             int bonusIce;
@@ -244,16 +262,19 @@ namespace LemonadeStand
                 return bonusIce;
             }
         }
+
         public double CreateMoney()
         {
             Random r = new Random();
             beginingMoney = r.Next(20, 100);
             return beginingMoney;
         }
+
         public double GetWB()
         {  
             return Day.weatherBonus;
         }
+
         public double TempBonus()
         {
             if (Day.GrabTemp() >90)
@@ -278,19 +299,23 @@ namespace LemonadeStand
             }
 
         }
+
         public double PowerToSell()
         {
             sellingPower = (((GetWB() + LemonBonus() + IceBonus() + SugarBonus() + TempBonus())-MoneyBonus()) * 5);
             return sellingPower;
         }
+
         public double MoneyRecipe()
         {
             return recipeMoney;
         }
+
         public double GetMoney()
         {
             return currentMoney;
         }
+
         public void UsePitcher()
         {
             maxPitchers = (maxPitchers - 1);
@@ -298,20 +323,24 @@ namespace LemonadeStand
             inventSugar = inventSugar - recipeSugar;
             inventIce = inventIce - recipeIce;
         }
+
         public void UseFirstPitcher()
         {
             inventLemons = inventLemons - recipeLemon;
             inventSugar = inventSugar - recipeSugar;
             inventIce = inventIce - recipeIce;
         }
+
         public double ReturnLoss()
         {
             return runningTotal;
         } 
+
         public void MeltIce()
         {
             inventIce = 0;
         }       
+
         public void RestoreBalance()
         {
             inventLemons = inventLemons + recipeLemon;
