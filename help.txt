@@ -1,1 +1,3 @@
-Just a blank document
+My first example of solid design principle is my ai class. its only jobs is to determine its ability to buy a cup of lemonade.
+
+My second example is my weather class whose only jobs is to generate the weather.
