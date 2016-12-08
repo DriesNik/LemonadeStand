@@ -21,6 +21,7 @@ namespace LemonadeStand
         double moneyMade;
         double netProfit;
         int dayCount;
+        int maximumDay;
         double paidAmount;
         public void StartGame()
         {
@@ -51,7 +52,8 @@ namespace LemonadeStand
 
         private void DayByDayLoop()
         {
-            while (dayCount <= 6)
+            maximumDay = 6;
+            while (dayCount <= maximumDay)
             {
                 cupsBought = 0;
                 DisplayDay();
@@ -217,6 +219,31 @@ namespace LemonadeStand
         private void GatherInfo()
         {            
             playerEins.GrabName();
+            Console.WriteLine("How many Days would you like to play for? 7 14 28");
+            try
+            {
+                maximumDay = int.Parse(Console.ReadLine());
+            }
+            catch(System.FormatException)
+            {
+                Console.WriteLine("Invalid Choice");
+                GatherInfo();
+            }
+            switch (maximumDay)
+            {
+                case 7:
+                    maximumDay = 6;
+                    break;
+                case 14:
+                    maximumDay = 13;
+                    break;
+                case 28:
+                    maximumDay = 27;
+                    break;
+                default:
+                    Console.WriteLine("Invalid answer");
+                    break;
+                    }
         }
 
         private void StartIntro()
