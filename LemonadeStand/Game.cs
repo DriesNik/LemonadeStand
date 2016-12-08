@@ -74,7 +74,7 @@ namespace LemonadeStand
 
         private void RestoreBalance()
         {
-            if (cupsBought > 12)
+            if (cupsBought >= 12)
             {
                 playerEins.RestoreBalance();
             }

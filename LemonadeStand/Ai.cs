@@ -20,7 +20,7 @@ namespace LemonadeStand
 
         int buyChance;
 
-        public int ChanceToBuy()
+        private int ChanceToBuy()
         {
             Thread.Sleep(1);
             buyChance = r.Next(100);
